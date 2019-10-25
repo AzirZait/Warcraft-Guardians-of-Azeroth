@@ -1543,3 +1543,81 @@
 	}
 	606.2.11={ death=yes }
 }
+42308={
+	name=Thalorien
+	dynasty=20178
+	dna="lkoejhhdkme"
+	culture=high_elf religion=cult_of_sunwell
+	martial=6 diplomacy=6 stewardship=6 intrigue=6 learning=6
+	add_trait=tough_soldier
+	add_trait=class_warrior_7
+	add_trait = class_mage_1
+	add_trait=quick add_trait=genius add_trait=proud add_trait=robust
+	46.1.19={
+		birth=yes add_trait=creature_high_elf immortal_age=18
+	}
+	583.1.1={
+		employer=42002
+	}
+	700.4.1={ death=yes }
+}
+42309={
+	name=Nelea
+	female=yes
+	dynasty=20264
+	dna="pnofkhhdell"
+	culture=high_elf religion=cult_of_sunwell
+	martial=7 diplomacy=7 stewardship=5 intrigue=5 learning=5
+	add_trait=skilled_tactician
+	add_trait=class_hunter_3
+	add_trait=quick add_trait=proud add_trait=humble add_trait=chaste add_trait=strategist
+	disallow_random_traits = yes
+	1.1.1={ birth=yes add_trait=creature_high_elf immortal_age=18 }
+	700.9.12={ death=yes }
+}
+42310={
+	name=Areiel
+	female=yes
+	dna="bobhlaghfph"
+	culture=high_elf religion=cult_of_sunwell
+	martial=7 diplomacy=6 stewardship=6 intrigue=6 learning=4
+	add_trait=tough_soldier
+	add_trait=class_hunter_4
+	add_trait=strong add_trait=proud add_trait=humble add_trait=wroth add_trait=strategist
+	disallow_random_traits = yes
+	1.1.1={ birth=yes add_trait=creature_high_elf immortal_age=18 }
+	583.1.1={
+		employer=42303
+	}
+	700.9.12={ death=yes }
+}
+42311={
+	name=Tae'thelan
+	dynasty=20266
+	dna="cborrenphat"
+	culture=high_elf religion=cult_of_sunwell
+	martial=5 diplomacy=5 stewardship=5 intrigue=5 learning=8
+	add_trait=scholarly_theologian add_trait=humble add_trait=scholar add_trait=honest add_trait=erudite
+	add_trait=just
+	157.7.19={ birth=yes add_trait=creature_high_elf immortal_age=18 }
+	173.7.19={
+		# add_trait = class_mage
+		# effect = { add_character_modifier = { name = hero_power_2 duration = -1 } }
+		add_trait = class_mage_3
+	}
+	609.6.17={ death=yes }
+}
+42312={
+	name=Amorelda
+	female=yes
+	dynasty=20266
+	dna="lklebfdjdcf"
+	culture=high_elf religion=cult_of_sunwell
+	father=42311	#Dratdron
+	add_trait=class_mage_1
+	576.9.14={ birth=yes add_trait=creature_high_elf }
+	583.1.1={
+		immortal_age=18
+	}
+	1190.4.22={ death=yes }
+}

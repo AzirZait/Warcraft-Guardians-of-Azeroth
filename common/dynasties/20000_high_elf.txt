@@ -262,3 +262,6 @@
 20261 = { name = "of the Nightfall" culture = high_elf }
 20262 = { name = "Salonar" culture = high_elf }
 20263 = { name = "Brightsun" culture = high_elf }
+20264 = { name = "Deemspring" culture = high_elf }
+20265 = { name = "Sunbrand" culture = high_elf }
+20266 = { name = "Bloodwatcher" culture = high_elf }
