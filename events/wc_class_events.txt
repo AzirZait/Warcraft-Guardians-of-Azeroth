@@ -2940,67 +2940,8 @@ narrative_event = {
 }
 
 #########################
-# DemonHunter
+# SpellBreaker
 #########################
-
-# Notification of the beginning of self-training
-narrative_event = {
-	id = WCCLS.1301
-	title = EVTTITLE_WCCLS_1
-	desc = EVTDESC_WCCLS_1301
-	picture = GFX_evt_demonhunter_elf
-	border = GFX_event_narrative_frame_war
-
-	is_triggered_only = yes
-
-	immediate = {
-		add_character_modifier = {
-			name = training_self_demon_hunter
-			duration = -1
-		}
-		character_event = { id = WCCLS.2152 }
-		narrative_event = {
-			id = WCCLS.1400
-			years = 5
-		}
-	}
-
-	option = {
-		name = EXCELLENT
-	}
-}
-
-# Notification of the end of the training
-narrative_event = {
-	id = WCCLS.1400
-	title = EVTTITLE_WCCLS_100
-	desc = EVTDESC_WCCLS_1400
-	picture = GFX_evt_demonhunter_elf
-	border = GFX_event_narrative_frame_war
-
-	is_triggered_only = yes
-
-	trigger = {
-		is_incapable = no
-		OR = {
-			has_character_modifier = training_self_demon_hunter
-			has_character_modifier = training_mentor_demon_hunter
-		}
-	}
-
-	fail_trigger_effect = {
-		if = {
-			limit = { is_incapable = yes }
-			character_event = { id = WCCLS.1450 }
-		}
-	}
-
-	option = {
-		name = EXCELLENT
-
-		add_class_trait_effect = yes
-	}
-}
 
 character_event = {
 	id = WCCLS.1401
@@ -3405,40 +3346,6 @@ character_event = {
 
 		event_target:student = {
 			set_character_flag = training_mentor_death_knight_flag
-			if = {
-				limit = {
-					NOT = { guardian = { character = event_target:mentor } }
-					NOT = { educator = { character = event_target:mentor } }
-				}
-				event_target:mentor = { letter_event = { id = WCCLS.2100 days = 1 } }
-			}
-			else = {
-				custom_tooltip = {
-					text = starts_training_tooltip
-					hidden_effect = { character_event = { id = WCCLS.2150 } }
-				}
-			}
-		}
-	}
-
-	# Demon Hunter
-	option = {
-		trigger = {
-			event_target:student = {
-				OR = {
-					AND = {
-						potential_demon_hunter_wo_training_trigger = yes
-						allow_demon_hunter_trigger = yes
-					}
-					is_weak_demon_hunter_class_trigger = yes
-				}
-			}
-			event_target:mentor = { potential_mentor_demon_hunter_trigger = yes }
-		}
-		name = A_DEMON_HUNTER
-
-		event_target:student = {
-			set_character_flag = training_mentor_demon_hunter_flag
 			if = {
 				limit = {
 					NOT = { guardian = { character = event_target:mentor } }
@@ -3941,17 +3848,6 @@ character_event = {
 		}
 		if = {
 			limit = {
-				has_character_flag = training_mentor_demon_hunter_flag
-			}
-			add_character_modifier = {
-				name = training_mentor_demon_hunter
-				duration = -1
-			}
-			clr_character_flag = training_mentor_demon_hunter_flag
-			narrative_event = { id = WCCLS.1400 years = 5 }
-		}
-		if = {
-			limit = {
 				has_character_flag = training_mentor_necromancer_flag
 			}
 			add_character_modifier = {
@@ -4008,7 +3904,6 @@ character_event = {
 						training_self_mage 				= { change_variable = { which = wc_experience_mage 				value = 1 } }
 						training_self_hunter 			= { change_variable = { which = wc_experience_hunter 			value = 1 } }
 						training_self_warrior 			= { change_variable = { which = wc_experience_warrior 			value = 1 } }
-						training_self_demon_hunter		= { change_variable = { which = wc_experience_demon_hunter		value = 1 } }
 						training_self_paladin 			= { change_variable = { which = wc_experience_paladin 			value = 1 } }
 						training_self_priest 			= { change_variable = { which = wc_experience_priest 			value = 1 } }
 						training_self_rogue 			= { change_variable = { which = wc_experience_rogue 			value = 1 } }
@@ -4032,7 +3927,6 @@ character_event = {
 						training_self_mage 				= { change_variable = { which = wc_experience_mage 				value = 2 } }
 						training_self_hunter 			= { change_variable = { which = wc_experience_hunter 			value = 2 } }
 						training_self_warrior 			= { change_variable = { which = wc_experience_warrior 			value = 2 } }
-						training_self_demon_hunter		= { change_variable = { which = wc_experience_demon_hunter		value = 2 } }
 						training_self_paladin 			= { change_variable = { which = wc_experience_paladin 			value = 2 } }
 						training_self_priest 			= { change_variable = { which = wc_experience_priest 			value = 2 } }
 						training_self_rogue 			= { change_variable = { which = wc_experience_rogue 			value = 2 } }
@@ -4066,10 +3960,6 @@ character_event = {
 				training_mentor_warrior = {
 					event_target:mentor = { ROOT = { set_variable = { which = wc_experience_difference which = wc_experience_warrior which = PREV } } }
 					subtract_variable = { which = wc_experience_difference which = wc_experience_warrior }
-				}
-				training_mentor_demon_hunter = {
-					event_target:mentor = { ROOT = { set_variable = { which = wc_experience_difference which = wc_experience_demon_hunter which = PREV } } }
-					subtract_variable = { which = wc_experience_difference which = wc_experience_demon_hunter }
 				}
 				training_mentor_paladin = {
 					event_target:mentor = { ROOT = { set_variable = { which = wc_experience_difference which = wc_experience_paladin which = PREV } } }
@@ -4123,7 +4013,6 @@ character_event = {
 					training_mentor_mage 			= { change_variable = { which = wc_experience_mage 				value = 1 } }
 					training_mentor_hunter 			= { change_variable = { which = wc_experience_hunter 			value = 1 } }
 					training_mentor_warrior 		= { change_variable = { which = wc_experience_warrior 			value = 1 } }
-					training_mentor_demon_hunter 	= { change_variable = { which = wc_experience_demon_hunter 	value = 1 } }
 					training_mentor_paladin 		= { change_variable = { which = wc_experience_paladin 			value = 1 } }
 					training_mentor_priest 			= { change_variable = { which = wc_experience_priest 			value = 1 } }
 					training_mentor_rogue 			= { change_variable = { which = wc_experience_rogue 			value = 1 } }
@@ -4143,7 +4032,6 @@ character_event = {
 							training_mentor_mage 			= { change_variable = { which = wc_experience_mage 				value = 1 } }
 							training_mentor_hunter 			= { change_variable = { which = wc_experience_hunter 			value = 1 } }
 							training_mentor_warrior 		= { change_variable = { which = wc_experience_warrior 			value = 1 } }
-							training_mentor_demon_hunter 	= { change_variable = { which = wc_experience_demon_hunter		value = 1 } }
 							training_mentor_paladin 		= { change_variable = { which = wc_experience_paladin 			value = 1 } }
 							training_mentor_priest 			= { change_variable = { which = wc_experience_priest 			value = 1 } }
 							training_mentor_rogue 			= { change_variable = { which = wc_experience_rogue 			value = 1 } }
@@ -4190,7 +4078,6 @@ character_event = {
 							training_mentor_mage 			= { change_variable = { which = wc_experience_mage 				value = 2 } }
 							training_mentor_hunter 			= { change_variable = { which = wc_experience_hunter 			value = 2 } }
 							training_mentor_warrior 		= { change_variable = { which = wc_experience_warrior 			value = 2 } }
-							training_mentor_demon_hunter 	= { change_variable = { which = wc_experience_demon_hunter		value = 2 } }
 							training_mentor_paladin 		= { change_variable = { which = wc_experience_paladin 			value = 2 } }
 							training_mentor_priest 			= { change_variable = { which = wc_experience_priest 			value = 2 } }
 							training_mentor_rogue 			= { change_variable = { which = wc_experience_rogue 			value = 2 } }
@@ -4237,7 +4124,6 @@ character_event = {
 							training_mentor_mage 			= { change_variable = { which = wc_experience_mage 				value = 3 } }
 							training_mentor_hunter 			= { change_variable = { which = wc_experience_hunter 			value = 3 } }
 							training_mentor_warrior 		= { change_variable = { which = wc_experience_warrior 			value = 3 } }
-							training_mentor_demon_hunter	= { change_variable = { which = wc_experience_demon_hunter		value = 3 } }
 							training_mentor_paladin 		= { change_variable = { which = wc_experience_paladin 			value = 3 } }
 							training_mentor_priest 			= { change_variable = { which = wc_experience_priest 			value = 3 } }
 							training_mentor_rogue 			= { change_variable = { which = wc_experience_rogue 			value = 3 } }
@@ -4276,7 +4162,6 @@ character_event = {
 							training_mentor_mage 			= { change_variable = { which = wc_experience_mage 				value = 4 } }
 							training_mentor_hunter 			= { change_variable = { which = wc_experience_hunter 			value = 4 } }
 							training_mentor_warrior 		= { change_variable = { which = wc_experience_warrior 			value = 4 } }
-							training_mentor_demon_hunter 	= { change_variable = { which = wc_experience_demon_hunter 	value = 4 } }
 							training_mentor_paladin 		= { change_variable = { which = wc_experience_paladin 			value = 4 } }
 							training_mentor_priest 			= { change_variable = { which = wc_experience_priest 			value = 4 } }
 							training_mentor_rogue 			= { change_variable = { which = wc_experience_rogue 			value = 4 } }
@@ -4315,7 +4200,6 @@ character_event = {
 							training_mentor_mage 			= { change_variable = { which = wc_experience_mage 				value = 5 } }
 							training_mentor_hunter 			= { change_variable = { which = wc_experience_hunter 			value = 5 } }
 							training_mentor_warrior 		= { change_variable = { which = wc_experience_warrior 			value = 5 } }
-							training_mentor_demon_hunter	= { change_variable = { which = wc_experience_demon_hunter		value = 5 } }
 							training_mentor_paladin 		= { change_variable = { which = wc_experience_paladin 			value = 5 } }
 							training_mentor_priest 			= { change_variable = { which = wc_experience_priest 			value = 5 } }
 							training_mentor_rogue 			= { change_variable = { which = wc_experience_rogue 			value = 5 } }
@@ -4357,7 +4241,6 @@ character_event = {
 							training_mentor_mage 			= { change_variable = { which = wc_experience_mage 				value = 6 } }
 							training_mentor_hunter 			= { change_variable = { which = wc_experience_hunter 			value = 6 } }
 							training_mentor_warrior 		= { change_variable = { which = wc_experience_warrior 			value = 6 } }
-							training_mentor_demon_hunter	= { change_variable = { which = wc_experience_demon_hunter		value = 6 } }
 							training_mentor_paladin 		= { change_variable = { which = wc_experience_paladin 			value = 6 } }
 							training_mentor_priest 			= { change_variable = { which = wc_experience_priest 			value = 6 } }
 							training_mentor_rogue 			= { change_variable = { which = wc_experience_rogue 			value = 6 } }
@@ -4399,7 +4282,6 @@ character_event = {
 							training_mentor_mage 			= { change_variable = { which = wc_experience_mage 				value = 7 } }
 							training_mentor_hunter 			= { change_variable = { which = wc_experience_hunter 			value = 7 } }
 							training_mentor_warrior 		= { change_variable = { which = wc_experience_warrior 			value = 7 } }
-							training_mentor_demon_hunter	= { change_variable = { which = wc_experience_demon_hunter		value = 7 } }
 							training_mentor_paladin 		= { change_variable = { which = wc_experience_paladin 			value = 7 } }
 							training_mentor_priest 			= { change_variable = { which = wc_experience_priest 			value = 7 } }
 							training_mentor_rogue 			= { change_variable = { which = wc_experience_rogue 			value = 7 } }
@@ -4441,7 +4323,6 @@ character_event = {
 							training_mentor_mage 			= { change_variable = { which = wc_experience_mage 				value = 8 } }
 							training_mentor_hunter 			= { change_variable = { which = wc_experience_hunter 			value = 8 } }
 							training_mentor_warrior 		= { change_variable = { which = wc_experience_warrior 			value = 8 } }
-							training_mentor_demon_hunter 	= { change_variable = { which = wc_experience_demon_hunter 	value = 8 } }
 							training_mentor_paladin 		= { change_variable = { which = wc_experience_paladin 			value = 8 } }
 							training_mentor_priest 			= { change_variable = { which = wc_experience_priest 			value = 8 } }
 							training_mentor_rogue 			= { change_variable = { which = wc_experience_rogue 			value = 8 } }
@@ -4491,7 +4372,6 @@ character_event = {
 							training_mentor_mage 			= { change_variable = { which = wc_experience_mage 				value = 9 } }
 							training_mentor_hunter 			= { change_variable = { which = wc_experience_hunter 			value = 9 } }
 							training_mentor_warrior 		= { change_variable = { which = wc_experience_warrior 			value = 9 } }
-							training_mentor_demon_hunter	= { change_variable = { which = wc_experience_demon_hunter		value = 9 } }
 							training_mentor_paladin 		= { change_variable = { which = wc_experience_paladin 			value = 9 } }
 							training_mentor_priest 			= { change_variable = { which = wc_experience_priest 			value = 9 } }
 							training_mentor_rogue 			= { change_variable = { which = wc_experience_rogue 			value = 9 } }
@@ -5925,7 +5805,7 @@ character_event = {
 }
 character_event = {
 	id = WCCLS.10402
-	desc = EVTDESC_WCCLS_10402
+	desc = EVTDESC_WCCLS.10402
 	picture = GFX_evt_arcaneblade
 	border = GFX_event_normal_frame_religion
 

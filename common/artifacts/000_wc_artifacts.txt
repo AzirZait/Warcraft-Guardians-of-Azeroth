@@ -352,7 +352,7 @@ arcaneblade_arcane_3 = {
 
 	active = {
 		is_adult = yes
-		is_spell_breaker_class_trigger = yes
+		trait = subclass_spell_breaker 
 	}
 
 	martial = 3
@@ -372,7 +372,7 @@ arcaneblade_flame_3 = {
 
 	active = {
 		is_adult = yes
-		is_spell_breaker_class_trigger = yes
+		trait = subclass_spell_breaker 
 	}
 
 	martial = 3
@@ -391,7 +391,7 @@ arcaneblade_frost_3 = {
 
 	active = {
 		is_adult = yes
-		is_spell_breaker_class_trigger = yes
+		trait = subclass_spell_breaker 
 	}
 
 	martial = 3
@@ -488,7 +488,7 @@ arcaneblade_arcane_2 = {
 
 	active = {
 		is_adult = yes
-		is_spell_breaker_class_trigger = yes
+		trait = subclass_spell_breaker 
 	}
 
 	martial = 2
@@ -508,7 +508,7 @@ arcaneblade_flame_2 = {
 
 	active = {
 		is_adult = yes
-		is_spell_breaker_class_trigger = yes
+		trait = subclass_spell_breaker 
 	}
 
 	martial = 2
@@ -527,7 +527,7 @@ arcaneblade_frost_2 = {
 
 	active = {
 		is_adult = yes
-		is_spell_breaker_class_trigger = yes
+		trait = subclass_spell_breaker 
 	}
 
 	martial = 2
@@ -623,7 +623,7 @@ arcaneblade_arcane_1 = {
 	flags = { combat_weapon sword arcane_religion }
 
 	active = {
-		is_spell_breaker_class_trigger = yes
+		trait = subclass_spell_breaker 
 	}
 
 	martial = 1
@@ -639,7 +639,7 @@ arcaneblade_flame_1 = {
 
 	active = {
 		is_adult = yes
-		is_spell_breaker_class_trigger = yes
+		trait = subclass_spell_breaker 
 	}
 
 	martial = 1
@@ -655,7 +655,7 @@ arcaneblade_frost_1 = {
 
 	active = {
 		is_adult = yes
-		is_spell_breaker_class_trigger = yes
+		trait = subclass_spell_breaker 
 	}
 
 	martial = 1
