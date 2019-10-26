@@ -2875,71 +2875,6 @@ character_event = {
 }
 
 #########################
-# SpellBreaker
-#########################
-
-# Notification of the beginning of self-training
-narrative_event = {
-	id = WCCLS.1402
-	title = EVTTITLE_WCCLS_1
-	desc = EVTDESC_WCCLS_1402
-	picture = GFX_evt_spellbreaker_elf
-	border = GFX_event_narrative_frame_war
-
-	is_triggered_only = yes
-
-	immediate = {
-		add_character_modifier = {
-			name = training_self_spell_breaker
-			duration = -1
-		}
-		character_event = { id = WCCLS.2152 }
-		narrative_event = {
-			id = WCCLS.1403
-			years = 5
-		}
-	}
-
-	option = {
-		name = EXCELLENT
-	}
-}
-
-# Notification of the end of the training
-narrative_event = {
-	id = WCCLS.1403
-	title = EVTTITLE_WCCLS_100
-	desc = EVTDESC_WCCLS_1403
-	picture = GFX_evt_spellbreaker_elf
-	border = GFX_event_narrative_frame_war
-
-	is_triggered_only = yes
-
-	trigger = {
-		is_incapable = no
-		OR = {
-			has_character_modifier = training_self_spell_breaker
-			has_character_modifier = training_mentor_spell_breaker
-		}
-	}
-
-	fail_trigger_effect = {
-		if = {
-			limit = { is_incapable = yes }
-			character_event = { id = WCCLS.1450 }
-		}
-	}
-
-	option = {
-		name = EXCELLENT
-		if = {
-			limit = { NOT = { trait = subclass_spell_breaker } }
-			add_trait = subclass_spell_breaker
-		}
-	}
-}
-
-#########################
 # DemonHunter
 #########################
 
@@ -3455,44 +3390,6 @@ character_event = {
 		}
 	}
 
-	# Spell Breaker
-	option = {
-		trigger = {
-			event_target:student = {
-				OR = {
-					AND = {
-						has_magical_potential_trigger = yes
-						learning = 15
-					}
-					AND = {
-						is_mage_class_trigger = yes
-						is_warrior_class_trigger = yes
-					}
-				}
-				NOT = { trait = subclass_spell_breaker }
-			}
-			event_target:mentor = { trait = subclass_spell_breaker }
-		}
-		name = A_SPELL_BREAKER
-
-		event_target:student = {
-			set_character_flag = training_mentor_spell_breaker_flag
-			if = {
-				limit = {
-					NOT = { guardian = { character = event_target:mentor } }
-					NOT = { educator = { character = event_target:mentor } }
-				}
-				event_target:mentor = { letter_event = { id = WCCLS.2100 days = 1 } }
-			}
-			else = {
-				custom_tooltip = {
-					text = starts_training_tooltip
-					hidden_effect = { character_event = { id = WCCLS.2150 } }
-				}
-			}
-		}
-	}
-
 	# Necromancer
 	option = {
 		trigger = {
@@ -3839,17 +3736,6 @@ character_event = {
 			}
 			clr_character_flag = training_mentor_warrior_flag
 			narrative_event = { id = WCCLS.300 years = 5 }
-		}
-		if = {
-			limit = {
-				has_character_flag = training_mentor_spell_breaker_flag
-			}
-			add_character_modifier = {
-				name = training_mentor_spell_breaker
-				duration = -1
-			}
-			clr_character_flag = training_mentor_spell_breaker_flag
-			narrative_event = { id = WCCLS.1403 years = 5 }
 		}
 		if = {
 			limit = {
@@ -5860,124 +5746,6 @@ character_event = {
 				warlock_score = yes
 				shadow_priest_score = yes
 				necromancer_score = yes
-			}
-		}
-	}
-}
-
-character_event = {
-	id = WCCLS.10400
-	desc = {
-		text = EVTDESC_WCCLS.10400
-	}
-	picture = GFX_evt_arcaneblade
-	border = GFX_event_normal_frame_religion
-
-	is_triggered_only = yes
-
-	immediate = {
-	}
-
-	option = {
-		name = EVTOPTA_WCCLS.10400
-
-		character_event = { id = WCCLS.10401 days = 30 random = 60 }
-	}
-	option = {
-		name = EVTOPTB_WCCLS.10400
-
-		character_event = { id = WCCLS.10402 days = 30 random = 60 }
-	}
-	option = {
-		name = EVTOPTC_WCCLS.10400
-
-		character_event = { id = WCCLS.10403 days = 30 random = 60 }
-	}
-}
-character_event = {
-	id = WCCLS.10401
-	desc = EVTDESC_WCCLS.10401
-	picture = GFX_evt_arcaneblade
-	border = GFX_event_normal_frame_religion
-
-	is_triggered_only = yes
-
-	immediate = {
-		clr_character_flag = do_not_disturb
-	}
-
-	option = {
-		name = EVTOPTA_WCCLS.10401
-		random_list = {
-			60 = {
-				add_artifact = arcaneblade_arcane_1
-			}
-			25 = {
-				add_artifact = arcaneblade_arcane_2
-				warrior_half_score = yes
-			}
-			15 = {
-				add_artifact = arcaneblade_arcane_3
-				warrior_score = yes		
-			}
-		}
-	}
-}
-character_event = {
-	id = WCCLS.10402
-	desc = EVTDESC_WCCLS_10402
-	picture = GFX_evt_arcaneblade
-	border = GFX_event_normal_frame_religion
-
-	is_triggered_only = yes
-
-	immediate = {
-		clr_character_flag = do_not_disturb
-	}
-
-	option = {
-		name = EVTOPTA_WCCLS.10402
-		random_list = {
-			60 = {
-				add_artifact = arcaneblade_flame_1
-			}
-			25 = {
-				add_artifact = arcaneblade_flame_2			
-				warrior_half_score = yes
-			}
-			15 = {
-				add_artifact = arcaneblade_flame_3
-				warrior_score = yes
-			}
-		}
-	}
-}
-character_event = {
-	id = WCCLS.10403
-	desc = EVTDESC_WCCLS.10403
-	picture = GFX_evt_arcaneblade
-	border = GFX_event_normal_frame_religion
-
-	is_triggered_only = yes
-
-	immediate = {
-		
-		clr_character_flag = do_not_disturb
-	}
-
-	option = {
-		name = EVTOPTA_WCCLS.10403
-		random_list = {
-			60 = {
-				add_artifact = arcaneblade_frost_1
-			}
-			25 = {
-				add_artifact = arcaneblade_frost_2
-				warrior_half_score = yes
-			}
-			15 = {
-				add_artifact = arcaneblade_frost_3
-				warrior_score = yes
 			}
 		}
 	}

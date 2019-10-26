@@ -115,11 +115,6 @@ spriteTypes = {
 		allwaystransparent = yes
 	}
 	spriteType = {
-		name = "GFX_evt_spellbreaker_elf"
-		texturefile = "gfx\\event_pictures\spellbreaker_elf.tga"
-		allwaystransparent = yes
-	}
-	spriteType = {
 		name = "GFX_evt_demonhunter_elf"
 		texturefile = "gfx\\event_pictures\demonhunter_elf.tga"
 		allwaystransparent = yes
@@ -502,12 +497,6 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_evt_runeblade"
 		texturefile = "gfx\\event_pictures\runeblade.tga"
-		allwaystransparent = yes
-	}
-
-	spriteType = {
-		name = "GFX_evt_arcaneblade"
-		texturefile = "gfx\\event_pictures\arcaneblade.tga"
 		allwaystransparent = yes
 	}
 	

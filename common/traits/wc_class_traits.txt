@@ -15,18 +15,6 @@ subclass_dark_shaman = {
 	ruler_designer_cost = 0
 	customizer = no
 }
-subclass_spell_breaker = {
-	intrigue = -1
-	learning = 2
-	druidism_group_opinion = -40
-	arcane_group_opinion = 40
-	text_effect_forge_arcaneblade = 1
-	text_effect_drain_arcane = 1
-
-	random = no
-	ruler_designer_cost = 0
-	customizer = no
-}
 
 subclass_moon_priest = {
 	martial = 2

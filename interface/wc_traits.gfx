@@ -70,13 +70,6 @@ spriteTypes = { # Classes
 		effectFile = "gfx/FX/buttonstate.lua"
 	}
 	spriteType = {
-		name = "GFX_trait_subclass_spell_breaker"
-		texturefile = "gfx/traits/subclass_spell_breaker.dds"
-		noOfFrames = 1
-		norefcount = yes
-		effectFile = "gfx/FX/buttonstate.lua"
-	}
-	spriteType = {
 		name = "GFX_trait_class_demon_hunter_1"
 		texturefile = "gfx/traits/class/class_demon_hunter_1.dds"
 		noOfFrames = 1

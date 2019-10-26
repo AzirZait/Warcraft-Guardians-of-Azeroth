@@ -257,10 +257,6 @@ spriteTypes = {
 		texturefile = "gfx\\interface\\decision_icons\\forge_runeblade.dds"
 	}
 	spriteType = {
-		name = "GFX_forge_arcaneblade"
-		texturefile = "gfx\\interface\\decision_icons\\forge_arcaneblade.tga"
-	}
-	spriteType = {
 		name = "GFX_wake_cthun"
 		texturefile = "gfx\\interface\\decision_icons\\choose_main_old_god.dds"
 	}

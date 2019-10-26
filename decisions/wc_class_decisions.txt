@@ -251,76 +251,6 @@ decisions = {
 		}
 	}
 
-	### Spell Breaker ###
-	teach_yourself_spell_breaker = {
-		is_high_prio = yes
-
-		ai_check_interval = 60
-
-		ai = no
-		only_playable = yes
-
-		potential = {
-			is_untouchable_trigger = no
-
-			is_adult = yes
-			is_incapable = no
-			prisoner = no
-			OR = {
-				culture_group = night_elf_group
-				culture_group = high_elf_group
-				culture_group = naga_group
-				culture_group = satyr_group
-			}	
-			NOT = { has_character_flag = hide_class_training_decisions_flag }
-			NOT = { trait = subclass_spell_breaker }	
-			has_magical_potential_trigger = yes
-		}
-		allow = {
-			show_only_failed_conditions = yes
-			
-			is_inaccessible_trigger = no
-			
-			NOT = { trait = subclass_spell_breaker }
-			religion_group = arcane_group
-			true_religion_group = arcane_group
-			OR = {
-				AND = {
-					is_ruler = yes
-					wealth = 25
-				}
-				is_ruler = no
-			}
-		}
-		effect = {
-			if = {
-				limit = { ai = no }
-				wealth = -25
-			}
-			character_event = { id = WCCLS.1402 }
-		}
-		revoke_allowed = {
-			always = no
-		}
-		ai_will_do = {
-			factor = 0.05
-
-			modifier = {
-				factor = 10
-
-				true_religion_group = arcane_group
-			}
-			modifier = {
-				factor = 2
-				trait = ambitious
-			}
-			modifier = {
-				factor = 2
-				trait = brave
-			}
-		}
-	}
-
 	### Demon Hunter ###
 	teach_yourself_demon_hunter = {
 		is_high_prio = yes
@@ -1769,53 +1699,6 @@ decisions = {
 
 	### Loa Priest ###
 
-	### Spell Breaker
-	forge_arcaneblade = {
-		is_high_prio = yes
-
-		ai_check_interval = 120
-
-		only_playable = yes
-
-		potential = {
-			is_adult = yes
-					trait = subclass_spell_breaker
-			
-			OR = {
-				ai = no
-				NOT = { has_character_flag = forged_arcaneblade }		# Otherwise, AI create a ton of runeblades
-			}
-		}
-		allow = {
-			show_only_failed_conditions = yes
-			
-			custom_tooltip = {
-				text = is_not_busy_trigger_tooltip
-				hidden_tooltip = { NOT = { has_character_flag = do_not_disturb } }
-			}
-			piety = 500
-		}
-		effect = {
-			set_character_flag = do_not_disturb				# Otherwise, you can fire decision twice
-			set_character_flag = forged_arcaneblade
-			
-				piety = -500
-			character_event = { id = WCCLS.10400 }
-		}
-		revoke_allowed = {
-			always = no
-		}
-		ai_will_do = {
-			factor = 0.8
-
-			modifier = {
-				factor = 0
-				war = yes
-
-			}
-		}
-	}
-
 	### Death Knight
 	forge_runeblade = {
 		is_high_prio = yes
@@ -1906,7 +1789,6 @@ targetted_decisions = {
 
 			OR {
 				is_mage_class_trigger = yes
-				is_spell_breaker_class_trigger = yes
 			}
 		}
 
@@ -1960,7 +1842,6 @@ targetted_decisions = {
 
 			OR {
 				is_mage_class_trigger = yes
-				is_spell_breaker_class_trigger = yes
 			}
 		}
 
@@ -2617,133 +2498,6 @@ targetted_decisions = {
 		}
 	}
 
-	### Spellbreaker ###
-	# Drain Mana from enemy
-	drain_arcane = {
-		filter = court
-		ai_target_filter = court
-		ai_check_interval = 24
-
-		only_playable = yes
-
-		from_potential = {
-			is_untouchable_trigger = no
-
-			is_adult = yes
-			is_incapable = no
-			prisoner = no
-
-			trait = subclass_spell_breaker
-		}
-
-		potential = {
-			is_untouchable_trigger = no
-
-			is_within_diplo_range = FROM
-
-			OR = {
-				character = FROM
-				has_invader_title_trigger = no
-			}
-
-			is_magic_class_trigger = yes
-		}
-
-		allow = {
-			show_only_failed_conditions = yes
-
-			OR = {
-				has_1_mana_trigger = yes
-				has_2_mana_trigger = yes
-				has_3_mana_trigger = yes
-				has_4_mana_trigger = yes
-				has_5_mana_trigger = yes
-			}
-
-			is_inaccessible_trigger = no
-			
-			NOT = { has_character_modifier = drained_mana }
-			custom_tooltip = {
-				text = has_not_used_decision_3_years_tooltip
-				hidden_tooltip = {
-					OR = {
-						NOT = { has_character_flag = drained_mana_cooldown_flag }
-						had_character_flag = { flag = drained_mana_cooldown_flag years = 3 }
-					}
-				}
-			}
-
-			is_humanoid_trigger = yes
-		}
-
-		effect = {
-			FROM = { character_event = { id = WCCLS.5} }
-		if {
-			limit = {
-				has_1_mana_trigger = yes
-			}
-			remove_1_mana_effect = yes
-		}
-		else_if {
-			limit = {
-				has_2_mana_trigger = yes
-			}
-			remove_2_mana_effect = yes
-		}
-		else_if {
-			limit = {
-				has_3_mana_trigger = yes
-			}
-			remove_3_mana_effect = yes
-		}
-		else_if {
-			limit = {
-				has_4_mana_trigger = yes
-			}
-			remove_4_mana_effect = yes
-		}
-		else_if {
-			limit = {
-				has_5_mana_trigger = yes
-			}
-			remove_5_mana_effect = yes
-		}
-		else {
-			can_get_sick_trigger = yes
-		}
-			ROOT = {
-				show_scope_change = no
-				
-				set_character_flag = drained_mana_cooldown_flag
-
-					tooltip = {
-							add_character_modifier = { name = drained_mana years = 2 }
-					}
-					if = {
-						limit = { NOT = { character = FROM } }
-						opinion = { modifier = opinion_hate who = FROM year = 5 }
-					}
-					hidden_effect = { character_event = { id = WCCLS.1401 } }
-			}
-		}
-
-		revoke_allowed = { always = no }
-
-		ai_will_do = {
-			factor = 1
-			modifier = {
-				factor = 0.01
-				NOR = {
-					trait = dwarf
-					is_priest = yes
-					is_ascetic_trigger = yes
-					is_virgin_trigger = yes
-					is_landed = yes
-				}
-			}
-		}
-	}
-
 	### Demon Hunter ###
 	# Eat demon
 	drain_demon_energy = {
@@ -2786,10 +2540,9 @@ targetted_decisions = {
 		}
 
 		effect = {
-			if = { 
-					limit = {
-						culture = sayaadi
-					}
+			trigger_switch = {
+				on_trigger = culture
+				sayaadi = {
 					FROM = {
 						random_list = {
 							98 = {	# Success
@@ -2800,12 +2553,9 @@ targetted_decisions = {
 								FROM = { death = { death_reason = death_missing } }
 							}
 						}
-					}
-			}
-			if = { 
-					limit = {
-						culture = moarg
-					}
+					} 
+				}
+				moarg = {
 					FROM = {
 						random_list = {
 							99 = {	# Success
@@ -2816,12 +2566,9 @@ targetted_decisions = {
 								FROM = { death = { death_reason = death_missing } }
 							}
 						}
-					}
-			}
-			if = { 
-					limit = {
-						culture = shivarra
-					}
+					} 
+				}
+				shivarra = {
 					FROM = {
 						random_list = {
 							97 = {	# Success
@@ -2832,12 +2579,9 @@ targetted_decisions = {
 								FROM = { death = { death_reason = death_missing } }
 							}
 						}
-					}
-			}
-			if = { 
-					limit = {
-						culture = satyr
-					}
+					} 
+				}
+				satyr = {
 					FROM = {
 						random_list = {
 							95 = {	# Success
@@ -2848,12 +2592,9 @@ targetted_decisions = {
 								FROM = { death = { death_reason = death_missing } }
 							}
 						}
-					}
-			}
-			if = { 
-					limit = {
-						culture = eredar
-					}
+					} 
+				}
+				eredar = {
 					FROM = {
 						random_list = {
 							80 = {	# Success
@@ -2864,12 +2605,9 @@ targetted_decisions = {
 								FROM = { death = { death_reason = death_missing } }
 							}
 						}
-					}
-			}
-			if = { 
-					limit = {
-						culture = nathrezim
-					}
+					} 
+				}
+				nathrezim = {
 					FROM = {
 						random_list = {
 							80 = {	# Success
@@ -2880,12 +2618,9 @@ targetted_decisions = {
 								FROM = { death = { death_reason = death_missing } }
 							}
 						}
-					}
-			}
-			if = { 
-					limit = {
-						culture = annihilan
-					}
+					} 
+				}
+				annihilan = {
 					FROM = {
 						random_list = {
 							90 = {	# Success
@@ -2896,12 +2631,9 @@ targetted_decisions = {
 								FROM = { death = { death_reason = death_missing } }
 							}
 						}
-					}
-			}
-			if = { 
-					limit = {
-						culture = eredruin
-					}
+					} 
+				}
+				eredruin = {
 					FROM = {
 						random_list = {
 							90 = {	# Success
@@ -2912,7 +2644,8 @@ targetted_decisions = {
 								FROM = { death = { death_reason = death_missing } }
 							}
 						}
-					}
+					} 
+				}
 			}
 			death = { death_reason = death_missing }
 			hidden_effect = { character_event = { id = MNM.7506 } }
